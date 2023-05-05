@@ -8,11 +8,7 @@ function guessANumber() {
     let computerGuess = Math.floor(Math.random() * 100);
     let guess;
     let numberOfGuesses = 0;
-
-
-
-
-
+    let tries = 10;
 
     let recursiveAsyncReadLine = function () {
 
@@ -21,13 +17,11 @@ function guessANumber() {
             guess = Number(number);
             numberOfGuesses++;
 
-            if (numberOfGuesses === 11) {
+            if (numberOfGuesses === tries + 1) {
                 console.log('Out of tries');
                 return readline.close();
 
             }
-
-
             if (guess <= 100 && guess >= 0) {
 
                 if (guess === computerGuess) {
@@ -42,13 +36,10 @@ function guessANumber() {
                 }
             } else {
                 console.log('Invalid number! Try again.');
+                numberOfGuesses--;
                 recursiveAsyncReadLine();
             }
-
-
         })
-
-
 
     }
     recursiveAsyncReadLine()
